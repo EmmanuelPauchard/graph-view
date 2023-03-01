@@ -34,10 +34,9 @@ def _labelled_input(text: str) -> html.Div:
                 type="text",
                 value="",
                 id=_text_to_id(text) + "-input",
-                style={"marginTop": "1em"},
             ),
         ],
-        style={"display": "flex", "flexDirection": "column"},
+        className="labelled-input",
     )
 
 
@@ -60,28 +59,30 @@ app.layout = html.Div(
         cyto.Cytoscape(
             id="graph-canvas",
             layout={"name": "cose"},
-            style={"width": 500, "height": 500, "border": "solid black"},
             elements=default_elements,
+            responsive=True,
         ),
         html.Div(
             [
                 _labelled_input(i)
-                for i in ["Selected Node", "Property 1", "Property 2", "Property 3"]
+                for i in [
+                    "Selected Node",
+                    "Property 1",
+                    "Property 2",
+                    "Property 3",
+                ]
             ]
-            + [html.Button("Update", id="update-button", n_clicks=0)],
-            style={
-                "display": "flex",
-                "flexDirection": "column",
-                "justifyContent": "space-between",
-            },
+            + [
+                html.Button(
+                    "Update",
+                    id="update-button",
+                    n_clicks=0,
+                ),
+            ],
+            className="form-menu",
         ),
     ],
-    style={
-        "display": "flex",
-        "justifyContent": "space-evenly",
-        "border": "solid black",
-        "padding": "2em",
-    },
+    className="main-container",
 )
 
 

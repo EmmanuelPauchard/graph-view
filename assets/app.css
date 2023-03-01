@@ -1,0 +1,42 @@
+.main-container {
+    display: flex;
+    flex-flow: row wrap;
+    border: solid black;
+    padding: 1em;
+    max-width: 900px;
+    margin: auto;
+}
+
+#graph-canvas {
+    border: solid black;
+    flex: 2;
+    min-width: 250px;
+}
+
+.form-menu {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-evenly;
+    min-width: 250px;
+    padding: 0 1em;
+}
+
+.labelled-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0 0;
+}
+
+.form-menu input {
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 1em;
+}
+
+.form-menu button {
+    padding: .5em;
+    margin: 2em 0 2em;
+    width: 100%;
+}

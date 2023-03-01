@@ -9,7 +9,7 @@ from dash import Dash, html, dcc, Input, Output, State
 import dash_cytoscape as cyto
 from itertools import filterfalse
 
-from nodes import elements
+from default_nodes import default_elements
 
 
 app = Dash(__name__)
@@ -62,7 +62,7 @@ app.layout = html.Div(
             id="graph-canvas",
             layout={"name": "cose"},
             style={"width": 500, "height": 500, "border": "solid black"},
-            elements=elements,
+            elements=default_elements,
         ),
         html.Div(
             [

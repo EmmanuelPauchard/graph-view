@@ -22,4 +22,4 @@ edges = [
     )
 ]
 
-elements = nodes + edges
+default_elements = nodes + edges

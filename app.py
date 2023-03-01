@@ -7,10 +7,9 @@ Create a graph and some fields to update the nodes.
 
 from dash import Dash, html, dcc, Input, Output, State
 import dash_cytoscape as cyto
-from itertools import filterfalse
 
 from default_nodes import default_elements
-
+from nodes import update_element_from_list
 
 app = Dash(__name__)
 
@@ -164,11 +163,7 @@ def update_node_data(clicks, selected, prop1, prop2, prop3, node, el):
         }
     }
 
-    return list(
-        filterfalse(
-            lambda x: "id" in x["data"] and x["data"]["id"] == node[0]["id"], el
-        )
-    ) + [updated_node]
+    return update_element_from_list(el, updated_node)
 
 
 if __name__ == "__main__":

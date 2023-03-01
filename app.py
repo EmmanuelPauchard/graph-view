@@ -11,7 +11,7 @@ import dash_cytoscape as cyto
 from default_nodes import default_elements
 from nodes import update_element_from_list
 
-app = Dash(__name__)
+app = Dash(__name__, title="Graph Visualisation App")
 
 
 def _text_to_id(text: str) -> str:

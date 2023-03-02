@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from nodes import update_element_from_list
+from graphtest.nodes import update_element_from_list
 
 import pytest
 

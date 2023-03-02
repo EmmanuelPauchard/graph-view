@@ -2,6 +2,17 @@
 
 This is a sample application to test Dash. The application displays a graph and a few fields to update the graph's nodes.
 
+## Live view
+
+This application is visible on Azure:
+https://graph-app-emmanuelp.azurewebsites.net/
+
+
+## Screenshot
+
+![Sceenshot](/img/screenshot.png)
+
+
 ## Dependencies
 See [requirements.txt](requirements.txt).
 

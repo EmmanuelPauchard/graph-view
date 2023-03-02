@@ -1,0 +1,8 @@
+.main-container {
+    display: flex;
+    flex-flow: row wrap;
+    border: solid black;
+    padding: 1em;
+    max-width: 900px;
+    margin: auto;
+}

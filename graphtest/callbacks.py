@@ -1,43 +1,10 @@
 #!/usr/bin/env python3
-"""
-Dash Demonstration Project.
+"""Dash Callbacks for the Graph viewer app."""
 
-Create a graph and some fields to update the nodes.
-"""
+from graphtest.nodes import update_element_from_list
 
-from dash import Dash, html, dcc, Input, Output, State
-import dash_cytoscape as cyto
-
-from default_nodes import default_elements
-from nodes import update_element_from_list
-
-app = Dash(__name__, title="Graph Visualisation App")
-
-
-def _text_to_id(text: str) -> str:
-    """Quick way to generate a deterministic id from text."""
-    return text.lower().replace(" ", "-")
-
-
-def _labelled_input(text: str) -> html.Div:
-    """
-    Return a Div made of a label and an input field.
-
-    @note: Id of HTML elements is the text transformed by text_to_id
-    @param: text: the label text
-    @return: html.Div, column layout
-    """
-    return html.Div(
-        [
-            html.Label(text, id=_text_to_id(text) + "-label"),
-            dcc.Input(
-                type="text",
-                value="",
-                id=_text_to_id(text) + "-input",
-            ),
-        ],
-        className="labelled-input",
-    )
+import dash
+from dash import Input, Output, State
 
 
 def _get_property(id: int, data: list):
@@ -54,39 +21,7 @@ def _get_property(id: int, data: list):
         return ""
 
 
-app.layout = html.Div(
-    [
-        cyto.Cytoscape(
-            id="graph-canvas",
-            layout={"name": "cose"},
-            elements=default_elements,
-            responsive=True,
-        ),
-        html.Div(
-            [
-                _labelled_input(i)
-                for i in [
-                    "Selected Node",
-                    "Property 1",
-                    "Property 2",
-                    "Property 3",
-                ]
-            ]
-            + [
-                html.Button(
-                    "Update",
-                    id="update-button",
-                    n_clicks=0,
-                ),
-            ],
-            className="form-menu",
-        ),
-    ],
-    className="main-container",
-)
-
-
-@app.callback(
+@dash.callback(
     Output("property-1-input", "value"), Input("graph-canvas", "selectedNodeData")
 )
 def update_prop1(clickData):
@@ -94,7 +29,7 @@ def update_prop1(clickData):
     return _get_property(1, clickData)
 
 
-@app.callback(
+@dash.callback(
     Output("property-2-input", "value"), Input("graph-canvas", "selectedNodeData")
 )
 def update_prop2(clickData):
@@ -102,7 +37,7 @@ def update_prop2(clickData):
     return _get_property(2, clickData)
 
 
-@app.callback(
+@dash.callback(
     Output("property-3-input", "value"), Input("graph-canvas", "selectedNodeData")
 )
 def update_prop3(clickData):
@@ -110,7 +45,7 @@ def update_prop3(clickData):
     return _get_property(3, clickData)
 
 
-@app.callback(
+@dash.callback(
     Output("selected-node-input", "value"), Input("graph-canvas", "selectedNodeData")
 )
 def update_selected_node(clickData):
@@ -121,7 +56,7 @@ def update_selected_node(clickData):
         return ""
 
 
-@app.callback(
+@dash.callback(
     Output("update-button", "disabled"), Input("graph-canvas", "selectedNodeData")
 )
 def enable_button(clickData):
@@ -135,7 +70,7 @@ def enable_button(clickData):
     return clickData is None or len(clickData) == 0
 
 
-@app.callback(
+@dash.callback(
     Output("graph-canvas", "elements"),
     Input("update-button", "n_clicks"),
     State("selected-node-input", "value"),
@@ -165,7 +100,3 @@ def update_node_data(clicks, selected, prop1, prop2, prop3, node, el):
     }
 
     return update_element_from_list(el, updated_node)
-
-
-if __name__ == "__main__":
-    app.run_server(debug=True)

@@ -60,4 +60,7 @@ class App:
 
         @param debug: If true, Start server in debug mode
         """
-        self.app.run(host=self.hostname, port=self.port, debug=debug)
+        self.app.run(debug=debug)
+
+    def get_server(self):
+        return self.app.server

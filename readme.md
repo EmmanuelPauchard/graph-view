@@ -14,6 +14,9 @@ https://graph-app-emmanuelp.azurewebsites.net/
 
 
 ## Dependencies
+
+Python version used for development and tests: 3.11.2
+
 See [requirements.txt](requirements.txt).
 
 This application is made with [Dash](https://plotly.com/dash/)

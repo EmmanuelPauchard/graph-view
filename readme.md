@@ -34,6 +34,30 @@ Each web component is divided into a module:
 
 ![Classes](/img/classes.png)
 
+## Unit tests
+
+Some unit tests have been writtent in the "tests" directory. 
+
+Why testing only the function `update_element_from_list` ?
+
+* in a real project, more elements would be candidate for tests but in this case, time was limited
+* `update_element_from_list` is a typical tricky, error-prone function that is also easy to test (pure)
+* the majority of the remaining code would need validation tests (including, up to the UI)
+
+```bash
+python -m pytest tests/test_nodes.py
+============================================================================================================ test session starts ============================================================================================================
+platform linux -- Python 3.11.2, pytest-7.2.1, pluggy-1.0.0
+rootdir: /home/manu/projects/sandbox/dash
+plugins: dash-2.8.1
+collected 7 items                                                                                                                                                                                                                           
+
+tests/test_nodes.py .......                                                                                                                                                                                                           [100%]
+
+============================================================================================================= 7 passed in 0.02s =============================================================================================================
+```
+
+> Note: this requires `pytest` package to be installed
 
 ## Caveats
 There are still a few things to explore:
